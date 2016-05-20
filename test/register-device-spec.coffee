@@ -55,10 +55,34 @@ describe 'RegisterDevice', ->
             expect(result).to.be.true
             done()
 
-      it 'should return a 204', ->
+      it 'should return a 201', ->
         expectedResponseMetadata =
           responseId: 'its-electric'
           code: 201
           status: 'Created'
+
+        expect(@response.metadata).to.deep.equal expectedResponseMetadata
+
+  describe '->do', ->
+    describe 'when given an invalid request', ->
+      beforeEach (done) ->
+        request =
+          metadata:
+            responseId: 'its-electric'
+            uuid: 'electric-eels'
+            messageType: 'received'
+            options: {}
+          rawData: 'hi'
+
+        @sut.do request, (error, @response) => done error
+
+      it 'should not return a device', ->
+        expect(@response.data).to.be.null
+
+      it 'should return a 422', ->
+        expectedResponseMetadata =
+          responseId: 'its-electric'
+          code: 422
+          status: 'Unprocessable Entity'
 
         expect(@response.metadata).to.deep.equal expectedResponseMetadata

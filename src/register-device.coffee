@@ -18,7 +18,12 @@ class RegisterDevice
     callback null, response
 
   do: (request, callback) =>
-    properties = JSON.parse request.rawData
+    try
+      properties = JSON.parse request.rawData
+    catch error
+
+    unless _.isPlainObject properties
+      return @_doCallback request, 422, null, callback
     @deviceManager.create properties, (error, device) =>
       return callback error if error?
       return @_doCallback request, 201, device, callback
