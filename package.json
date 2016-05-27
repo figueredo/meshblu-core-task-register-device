@@ -1,6 +1,6 @@
 {
   "name": "meshblu-core-task-register-device",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Meshblu core task meshblu-core-task-register-device",
   "keywords": [
     "meshblu",
@@ -25,7 +25,7 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "lodash": "^4.6.1",
-    "meshblu-core-manager-device": "^2.4.1"
+    "meshblu-core-manager-device": "^2.4.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
