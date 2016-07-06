@@ -17,7 +17,8 @@ describe 'RegisterDevice', ->
 
   beforeEach ->
     @cache = new Cache client: redis.createClient uuid.v1()
-    @sut = new RegisterDevice {@datastore, @cache}
+    uuidAliasResolver = resolve: (uuid, callback) => callback(null, uuid)
+    @sut = new RegisterDevice {@datastore, @cache, uuidAliasResolver}
 
   describe '->do', ->
     describe 'when given a valid request', ->
@@ -46,14 +47,6 @@ describe 'RegisterDevice', ->
           expect(device.meshblu.createdAt).to.exist
           expect(device.meshblu.hash).to.exist
           done()
-
-      it 'should create the token in the cache', (done) ->
-        @datastore.findOne {uuid: @response.data.uuid}, (error, device) =>
-          return done error if error?
-          @cache.exists "#{device.uuid}:#{device.token}", (error, result) =>
-            return done error if error?
-            expect(result).to.be.true
-            done()
 
       it 'should return a 201', ->
         expectedResponseMetadata =

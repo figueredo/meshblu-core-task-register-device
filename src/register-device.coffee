@@ -3,10 +3,10 @@ http          = require 'http'
 DeviceManager = require 'meshblu-core-manager-device'
 
 class RegisterDevice
-  constructor: ({@cache,@uuidAliasResolver,@datastore}) ->
+  constructor: ({@cache,uuidAliasResolver,@datastore}) ->
     throw new Error "Missing mandatory @cache option" unless @cache?
     throw new Error "Missing mandatory @datastore option" unless @datastore?
-    @deviceManager = new DeviceManager {@cache, @datastore}
+    @deviceManager = new DeviceManager {@cache, @datastore, uuidAliasResolver}
 
   _doCallback: (request, code, device, callback) =>
     response =
