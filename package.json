@@ -1,6 +1,6 @@
 {
   "name": "meshblu-core-task-register-device",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Meshblu core task meshblu-core-task-register-device",
   "keywords": [
     "meshblu",
@@ -28,7 +28,7 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "lodash": "^4.6.1",
-    "meshblu-core-manager-device": "^3.0.1"
+    "meshblu-core-manager-device": "^4.2.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -39,7 +39,7 @@
     "mocha": "^2.4.5",
     "mocha-multi": "^0.9.1",
     "mocha-osx-reporter": "^0.1.2",
-    "mongojs": "^2.3.0",
+    "mongojs": "^2.4.0",
     "nyc": "^8.3.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
